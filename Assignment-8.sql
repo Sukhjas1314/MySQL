@@ -86,3 +86,49 @@ INSERT INTO Reserves VALUES (4, 103, TO_DATE('2024-01-12','YYYY-MM-DD'));
       WHERE b.color = 'red'
   );
 
+
+-- Q6.
+  SELECT DISTINCT s.sname
+  FROM Sailors s
+  JOIN Reserves r ON s.sid = r.sid;
+
+
+-- Q7.
+  SELECT s.sname
+  FROM Sailors s
+  WHERE s.rating > ANY (
+      SELECT rating FROM Sailors WHERE sname = 'Horatio'
+  );
+
+
+-- Q8.
+  SELECT s.sname
+  FROM Sailors s
+  WHERE s.rating > ALL (
+      SELECT rating FROM Sailors WHERE sname = 'Horatio'
+  );
+
+
+-- Q9.
+  SELECT sname
+  FROM Sailors
+  WHERE rating = (
+      SELECT MAX(rating) FROM Sailors
+  );
+
+
+-- Q10.
+  SELECT s.sname
+  FROM Sailors s
+  WHERE NOT EXISTS (
+      SELECT b.bid
+      FROM Boats b
+      MINUS
+      SELECT r.bid
+      FROM Reserves r
+      WHERE r.sid = s.sid
+  );
+
+
+
+
