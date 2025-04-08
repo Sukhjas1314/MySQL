@@ -42,3 +42,47 @@ INSERT INTO Reserves VALUES (4, 103, TO_DATE('2024-01-12','YYYY-MM-DD'));
   JOIN Reserves r ON s.sid = r.sid 
   JOIN Boats b ON r.bid = b.bid 
   WHERE b.color IN ('red', 'green');
+
+
+-- Q2.
+  SELECT s.sname
+  FROM Sailors s
+  WHERE s.sid IN (
+      SELECT r1.sid
+      FROM Reserves r1
+      JOIN Boats b1 ON r1.bid = b1.bid
+      WHERE b1.color = 'red'
+  )
+  AND s.sid IN (
+      SELECT r2.sid
+      FROM Reserves r2
+      JOIN Boats b2 ON r2.bid = b2.bid
+      WHERE b2.color = 'green'
+  );
+
+
+-- Q3.
+  SELECT DISTINCT s.sname
+  FROM Sailors s
+  JOIN Reserves r ON s.sid = r.sid
+  WHERE r.bid = 103;
+
+
+-- Q4.
+  SELECT DISTINCT s.sname
+  FROM Sailors s
+  JOIN Reserves r ON s.sid = r.sid
+  JOIN Boats b ON r.bid = b.bid
+  WHERE b.color = 'red';
+
+
+-- Q5.
+  SELECT s.sname
+  FROM Sailors s
+  WHERE s.sid NOT IN (
+      SELECT r.sid
+      FROM Reserves r
+      JOIN Boats b ON r.bid = b.bid
+      WHERE b.color = 'red'
+  );
+
