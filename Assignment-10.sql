@@ -39,3 +39,63 @@ BEGIN
 	result1 := factorial(5);
 	dbms_output.put_line('Factorial is : ' || result1);
 END;
+
+
+-- Q3.
+DECLARE
+	CREATE OR REPLACE PROCEDURE check_number(n IN number) IS
+BEGIN
+	IF n > 0 THEN
+		dbms_output.put_line('Positive');
+	ELSIF n < 0 THEN
+		dbms_output.put_line('Negative');
+	ELSE 
+		dbms_output.put_line('Zero');
+	END IF;
+END;
+BEGIN 
+	check_number(-5);
+END;
+
+
+-- Q4.
+DECLARE
+	FUNCTION sum_to_n(n in number) RETURN number IS
+		s number := 0;
+	BEGIN
+		FOR i in 1..n LOOP
+			s := s + i;
+		END LOOP;
+		RETURN s;
+	END;
+	result2 number;
+BEGIN
+	result2 := sum_to_n(5);
+	dbms_output.put_line('Sum is : ' || result2);
+END;
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
