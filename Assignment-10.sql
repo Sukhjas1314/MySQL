@@ -75,9 +75,19 @@ BEGIN
 END;
 	
 
-
-
-
+-- Q5.
+DECLARE
+	res number;
+	PROCEDURE sum_of_averages(n1 IN number,n2 IN number,result OUT number) IS
+		avg number := 0;
+	BEGIN 
+		avg := (n1 + n2) / 2;
+		result := avg + avg;
+	END;
+BEGIN
+	sum_of_averages(10,20,res);
+	dbms_output.put_line('Sum of Averages : ' || res);
+END;
 
 
 
