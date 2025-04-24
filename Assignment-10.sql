@@ -90,17 +90,89 @@ BEGIN
 END;
 
 
+-- Q6.
+DECLARE
+	PROCEDURE print_string(s IN varchar,n IN number) IS
+		BEGIN
+			IF n > 0 THEN
+				dbms_output.put_line(s);
+				print_string(s,n - 1);
+			END IF;
+		END;
+BEGIN
+	print_string('hello world',10);
+END;
 
 
+-- Q7. - Q10.
+CREATE table student(rollno number,name varchar(30),subId number,mark1 number,mark2 number,mark3 number);
+INSERT INTO student values(1,'Raju',101,99,97,100);
 
 
+-- Q7.
+CREATE OR REPLACE PROCEDURE p1(rno IN number,total OUT number) IS
+	BEGIN
+		SELECT mark1+mark2+mark3 INTO total FROM student where rollno = rno;
+	END;
+DECLARE
+	total number;
+BEGIN
+	p1(1,total);
+	dbms_output.put_line('Total marks : ' || total);
+END;
 
 
+-- Q8.
+CREATE OR REPLACE FUNCTION fun2(rno in number) RETURN number IS
+	total number;
+	avg number;
+BEGIN
+	p1(rno,total);
+	avg := total / 3;
+	return avg;
+END;
+DECLARE
+	a number;
+BEGIN
+	a := fun2(1);
+	dbms_output.put_line('Average marks : ' || a);
+END;
 
 
+-- Q9.
+CREATE OR REPLACE FUNCTION fun3(rno IN number) RETURN number IS
+	n1 number;
+	n2 number;
+	n3 number;
+BEGIN 
+	SELECT mark1,mark2,mark3 INTO n1,n2,n3 FROM student where rollno = rno;
+	return GREATEST(n1,n2,n3);
+END;
+/
+DECLARE
+	highest number;
+BEGIN
+	highest := fun3(1);
+	dbms_output.put_line('The highest marks are : ' || highest);
+END;
 
 
-
+-- Q10.
+CREATE OR REPLACE PROCEDURE p2(rno IN number) IS
+	n1 number;
+	n2 number;
+	n3 number;
+	total number;
+BEGIN
+	p1(rno,total);
+	SELECT mark1,mark2,mark3 INTO n1,n2,n3 FROM student where rollno = rno;
+	dbms_output.put_line('Marks are : ' || n1 || ' , ' || n2 || ' , ' || n3);
+	dbms_output.put_line('Total marks are : ' || total);
+END;
+/
+BEGIN
+	p2(1);
+END;
 
 
 
