@@ -1,4 +1,4 @@
-                                                              -- Assignmnet 10
+                                                              -- Assignment 10
 
 
 -- Q1.
