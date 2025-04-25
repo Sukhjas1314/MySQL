@@ -58,8 +58,7 @@ END;
 
 
 -- Q4.
-DECLARE
-	FUNCTION sum_to_n(n in number) RETURN number IS
+CREATE OR REPLACE FUNCTION sum_to_n(n in number) RETURN number IS
 		s number := 0;
 	BEGIN
 		FOR i in 1..n LOOP
@@ -67,6 +66,7 @@ DECLARE
 		END LOOP;
 		RETURN s;
 	END;
+DECLARE
 	result2 number;
 BEGIN
 	result2 := sum_to_n(5);
