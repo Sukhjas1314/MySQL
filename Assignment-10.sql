@@ -42,8 +42,7 @@ END;
 
 
 -- Q3.
-DECLARE
-	CREATE OR REPLACE PROCEDURE check_number(n IN number) IS
+CREATE OR REPLACE PROCEDURE check_number(n IN number) IS
 BEGIN
 	IF n > 0 THEN
 		dbms_output.put_line('Positive');
