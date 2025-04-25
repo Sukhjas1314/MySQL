@@ -91,7 +91,7 @@ END;
 
 -- Q6.
 DECLARE
-	PROCEDURE print_string(s IN varchar,n IN number) IS
+	FUNCTION print_string(s IN varchar,n IN number) IS
 		BEGIN
 			IF n > 0 THEN
 				dbms_output.put_line(s);
