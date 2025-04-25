@@ -158,7 +158,8 @@ END;
 
 
 -- Q10.
-CREATE OR REPLACE PROCEDURE p2(rno IN number) IS
+DECLARE
+	PROCEDURE p2(rno IN number) IS
 	n1 number;
 	n2 number;
 	n3 number;
