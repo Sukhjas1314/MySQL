@@ -122,7 +122,8 @@ END;
 
 
 -- Q8.
-CREATE OR REPLACE FUNCTION fun2(rno in number) RETURN number IS
+DECLARE
+	FUNCTION fun2(rno in number) RETURN number IS
 	total number;
 	avg number;
 BEGIN
